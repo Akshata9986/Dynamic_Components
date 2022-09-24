@@ -1,17 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <navbar-comp />
+  <button @click="setSelectedComp('home-comp')">Home🏠</button>
+  <button @click="setSelectedComp('login-comp')">Login</button>
+
+  <keep-alive>
+    <component :is="selectedComponent"></component>
+  </keep-alive>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HomeComp from "./components/HomeComp.vue";
+import LoginComp from "./components/LoginComp.vue";
+import NavbarComp from "./components/NavbarComp.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    HomeComp,
+    LoginComp,
+    NavbarComp,
+  },
+  data() {
+    return {
+      // selectedComponent: "home-comp",
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    setSelectedComp(comp) {
+      console.log("comp", comp);
+      this.selectedComponent = comp;
+      this.email = email;
+      this.password = password;
+    },
+  },
+};
 </script>
 
 <style>
@@ -21,6 +45,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
